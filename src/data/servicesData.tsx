@@ -91,7 +91,7 @@ export const serviceList: ServiceCategory[] = [
         desc: "Decoração sublime para congressos e celebrações.",
         longDesc: "Respeito e beleza para sua comunidade. Desenvolvemos temáticas espirituais para congressos, EBOs e EBDs, criando um ambiente de reverência e celebração.",
         type: "Congresso (Mulheres)",
-        image: "/assets/images/religioso_decor.jpg",
+        image: "/assets/images/religioso_final.png",
         highlights: ["Temas bíblicos", "Conforto para o público", "Cenografia de Altar", "Visual sóbrio e elegante"],
         subcategories: [
             { name: "Congressos", icon: <Users size={18} /> },
