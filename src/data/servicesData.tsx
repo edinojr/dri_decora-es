@@ -34,7 +34,7 @@ export const serviceList: ServiceCategory[] = [
         desc: "Cenários deslumbrantes para o seu 'Sim' ser inesquecível.",
         longDesc: "O casamento é a celebração do amor supremo. Criamos cenários que harmonizam sofisticação e romantismo, seja em salões clássicos, jardins ao pôr do sol ou espaços minimalistas modernos.",
         type: "Casamento",
-        image: "/assets/images/casamento_decor.png",
+        image: "/assets/images/casamento_final.png",
         highlights: ["Altares exclusivos", "Arranjos florais nobres", "Cenografia de impacto", "Mobiliário premium"],
         subcategories: [
             { name: "Clássico", icon: <Castle size={18} /> },
