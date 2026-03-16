@@ -1,73 +1,130 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Instagram, Facebook, MessageCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import banner from '../assets/banner.jpg';
 
 const Hero: React.FC = () => {
-  return (
-    <section className="hero-section" style={{ padding: '0' }}>
-      {/* Banner Image Solo with Buttons */}
-      <div style={{
-        position: 'relative',
-        height: '60vh',
-        width: '100%',
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(${banner})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        paddingBottom: '40px'
-      }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}
-        >
-          <a href="#leads" className="premium-button">Solicitar Orçamento</a>
-          <a href="#servicos" className="premium-button secondary">Ver Serviços</a>
-        </motion.div>
-      </div>
+  const slides = [
+    { 
+      url: banner, 
+      title1: "Transformando Sonhos em", 
+      title2: "Cenários Inesquecíveis" 
+    },
+    { 
+      url: "/assets/images/slide1.png", 
+      title1: "Sofisticação e Arte", 
+      title2: "Para Sua Celebração" 
+    }
+  ];
 
-      {/* Social Media Icons Below Banner */}
-      <div className="container" style={{ position: 'relative' }}>
-        <div style={{
-          position: 'absolute',
-          top: '20px',
-          right: '20px',
-          display: 'flex',
-          gap: '15px',
-          zIndex: 10
-        }}>
-          <a href="https://www.instagram.com/dridecoracoesadriane/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--secondary)', transition: 'transform 0.3s' }} className="social-icon">
-            <Instagram size={24} />
-          </a>
-          <a href="https://www.facebook.com/dri.d.adriane" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--secondary)', transition: 'transform 0.3s' }} className="social-icon">
-            <Facebook size={24} />
-          </a>
-          <a href="https://wa.me/5511997335200" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--secondary)', transition: 'transform 0.3s' }} className="social-icon">
-            <MessageCircle size={24} />
-          </a>
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+
+  return (
+    <section className="hero-section" style={{ padding: '0', overflow: 'hidden', backgroundColor: 'var(--secondary)' }}>
+      {/* Carousel Container */}
+      <div style={{ position: 'relative', height: '75vh', width: '100%' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url(${slides[currentIndex].url})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div className="container" style={{ textAlign: 'center', color: 'white' }}>
+              <motion.h1 
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', marginBottom: '20px', lineHeight: '1.2', textShadow: '0 2px 15px rgba(0,0,0,0.4)' }}
+              >
+                {slides[currentIndex].title1} <br />
+                <span style={{ color: 'var(--primary)' }}>{slides[currentIndex].title2}</span>
+              </motion.h1>
+              
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '30px', flexWrap: 'wrap' }}
+              >
+                <a href="#leads" className="premium-button">Solicitar Orçamento</a>
+                <a href="#servicos" className="premium-button secondary" style={{ color: 'white', borderColor: 'white' }}>Ver Serviços</a>
+              </motion.div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation Arrows */}
+        {slides.length > 1 && (
+          <>
+            <button 
+              onClick={prevSlide} 
+              style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', padding: '15px', color: 'white', cursor: 'pointer', zIndex: 10, backdropFilter: 'blur(5px)' }}
+              aria-label="Slide anterior"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              onClick={nextSlide} 
+              style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', padding: '15px', color: 'white', cursor: 'pointer', zIndex: 10, backdropFilter: 'blur(5px)' }}
+              aria-label="Próximo slide"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </>
+        )}
+
+        {/* Dots */}
+        <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '10px', zIndex: 10 }}>
+          {slides.map((_, i) => (
+            <div 
+              key={i} 
+              onClick={() => setCurrentIndex(i)}
+              style={{ 
+                width: '10px', 
+                height: '10px', 
+                borderRadius: '50%', 
+                backgroundColor: i === currentIndex ? 'var(--primary)' : 'rgba(255,255,255,0.3)',
+                cursor: 'pointer',
+                transition: 'all 0.3s'
+              }} 
+            />
+          ))}
         </div>
       </div>
 
-      {/* Headline Text Below Banner */}
-      <div className="container" style={{ marginTop: '40px', textAlign: 'center' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+      {/* Intro Text */}
+      <div className="container" style={{ padding: '60px 0', textAlign: 'center' }}>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          style={{ fontSize: '1.2rem', color: 'var(--text-light)', maxWidth: '800px', margin: '0 auto' }}
         >
-          <h1 style={{ fontSize: '3rem', marginBottom: '20px', lineHeight: '1.2', color: 'var(--secondary)' }}>
-            Transformando Sonhos em <br />
-            <span style={{ color: 'var(--primary)' }}>Cenários Inesquecíveis</span>
-          </h1>
-          <p style={{ fontSize: '1.2rem', marginBottom: '40px', maxWidth: '800px', margin: '0 auto 40px', color: 'var(--text-light)' }}>
-            Designer e Arte para sua festa. Especialistas em eventos personalizados,
-            temáticos, corporativos e cristãos.
-          </p>
-        </motion.div>
+          Designer e Arte para celebrar cada detalhe da sua história. Especialistas em eventos personalizados,
+          temáticos, corporativos e cristãos.
+        </motion.p>
       </div>
     </section>
   );
