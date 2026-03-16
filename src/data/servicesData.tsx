@@ -19,7 +19,7 @@ export const serviceList: ServiceCategory[] = [
         desc: "Personagens e temas mágicos que encantam as crianças.",
         longDesc: "Transformamos o aniversário do seu pequeno em uma jornada épica. Trabalhamos com os temas mais amados: desde reinos de princesas e heróis da Marvel até fazendinhas rústicas e mundos espaciais.",
         type: "Aniversário Infantil (Menina)",
-        image: "/assets/images/infantil_decor.png",
+        image: "/assets/images/infantil_final.png",
         highlights: ["Cenarios com personagens", "Mesas temáticas luxuosas", "Lembranças personalizadas", "Painéis 3D"],
         subcategories: [
             { name: "Super Heróis", icon: <Castle size={18} /> },
@@ -105,7 +105,7 @@ export const serviceList: ServiceCategory[] = [
         desc: "Acervo completo: móveis, brinquedos, porcelanas e painéis sublimáticos.",
         longDesc: "Acesse nosso acervo curado com peças exclusivas que vão do clássico ao moderno. Oferecemos móveis de luxo, brinquedos para festas infantis e porcelanas finas.",
         type: "Aluguel",
-        image: "/assets/images/aluguel_decor.jpg",
+        image: "/assets/images/aluguel_final.png",
         highlights: ["Móveis de Luxo", "Brinquedos Temáticos", "Porcelanas Nobres", "Painéis 3D"],
         subcategories: [
             { name: "Mobiliário", icon: <Package size={18} /> },
