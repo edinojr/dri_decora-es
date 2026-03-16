@@ -119,9 +119,20 @@ const PortfolioGallery: React.FC = () => {
                                     ))}
                                 </ul>
 
-                                <a href="#leads" className="premium-button" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-                                    Solicitar Orçamento <Send size={18} />
-                                </a>
+                                <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+                                    <a href="#leads" className="premium-button" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+                                        Solicitar Orçamento <Send size={18} />
+                                    </a>
+                                    <a 
+                                        href="https://www.instagram.com/dridecoracoesadriane/" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="premium-button secondary" 
+                                        style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}
+                                    >
+                                        Veja mais no Instagram
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     ))}

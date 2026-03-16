@@ -5,6 +5,7 @@ import PortfolioGallery from './components/PortfolioGallery';
 import Services from './components/Services';
 import LeadForm from './components/LeadForm';
 import Footer from './components/Footer';
+import FloatingSocialBar from './components/FloatingSocialBar';
 
 function App() {
   const [prefilledType, setPrefilledType] = React.useState('');
@@ -17,6 +18,7 @@ function App() {
       <PortfolioGallery />
       <LeadForm prefilledType={prefilledType} onClearPrefilled={() => setPrefilledType('')} />
       <Footer />
+      <FloatingSocialBar />
     </main>
   );
 }

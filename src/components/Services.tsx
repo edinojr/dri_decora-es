@@ -82,9 +82,22 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
                                 )}
                             </div>
 
-                            <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--primary)', fontWeight: 'bold' }}>
-                                Ver Detalhes Inesquecíveis →
-                            </div>
+                            <a 
+                                href="https://www.instagram.com/dridecoracoesadriane/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                style={{ 
+                                    marginTop: 'auto', 
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    gap: '10px', 
+                                    color: 'var(--primary)', 
+                                    fontWeight: 'bold',
+                                    textDecoration: 'none'
+                                }}
+                            >
+                                Ver Detalhes no Instagram →
+                            </a>
                         </motion.div>
                     ))}
                 </div>
