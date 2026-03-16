@@ -63,7 +63,7 @@ export const serviceList: ServiceCategory[] = [
         desc: "Reforce sua marca com eventos profissionais de alto nível.",
         longDesc: "A imagem da sua empresa é refletida em seus eventos. Oferecemos soluções de design para confraternizações e aniversários corporativos que unem o DNA da marca à sofisticação.",
         type: "Aniversário da Empresa",
-        image: "/assets/images/corporativo_premium.png",
+        image: "/assets/images/corporativo_final.png",
         highlights: ["Branding integrado", "Layouts otimizados", "Elegância corporativa", "Logística impecável"],
         subcategories: [
             { name: "Aniversários", icon: <PartyPopper size={18} /> },
