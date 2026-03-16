@@ -13,8 +13,8 @@ function App() {
     <main>
       <Hero />
       <About />
-      <PortfolioGallery />
       <Services onSelectService={(type) => setPrefilledType(type)} />
+      <PortfolioGallery />
       <LeadForm prefilledType={prefilledType} onClearPrefilled={() => setPrefilledType('')} />
       <Footer />
     </main>

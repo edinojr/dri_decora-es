@@ -32,7 +32,8 @@ const LeadForm: React.FC<LeadFormProps> = ({ prefilledType, onClearPrefilled }) 
         orcamento: '',
         descricaoProjeto: '',
         objetoAluguel: '',
-        descricaoAluguel: ''
+        descricaoAluguel: '',
+        customTipoEvento: ''
     });
 
     React.useEffect(() => {
@@ -133,7 +134,7 @@ Gostaria de falar sobre ${isAluguel ? 'um Aluguel de Peças' : 'minha Festa do S
 ${isAluguel ? `Objeto pretendido: ${formData.objetoAluguel}\nDescrição: ${formData.descricaoAluguel}` : formData.descricaoProjeto}
 
 Detalhes:
-- Tipo: ${formData.tipoEvento}
+- Tipo: ${formData.tipoEvento === 'Outro' ? formData.customTipoEvento : formData.tipoEvento}
 - Data: ${dateFormatted}
 ${!isAluguel ? `- Orçamento pretendido: ${formData.orcamento}` : ''}
 
@@ -288,12 +289,18 @@ Meus Contatos:
                             <label style={labelStyle}><Calendar size={16} /> Tipo de Evento</label>
                             <select required style={inputStyle} value={formData.tipoEvento} onChange={(e) => setFormData({ ...formData, tipoEvento: e.target.value })}>
                                 <option value="">Selecione...</option>
-                                <optgroup label="Infantis e Adultos">
-                                    <option value="Casamento">Casamento</option>
+                                <optgroup label="Infantis">
                                     <option value="Aniversário Infantil (Menino)">Aniversário Infantil (Menino)</option>
                                     <option value="Aniversário Infantil (Menina)">Aniversário Infantil (Menina)</option>
+                                </optgroup>
+                                <optgroup label="Debutantes e Adultos">
+                                    <option value="Debutante (15 Anos)">Debutante (15 Anos)</option>
                                     <option value="Aniversário Adulto (Homem)">Adulto (Homem)</option>
                                     <option value="Aniversário Adulto (Mulher)">Adulto (Mulher)</option>
+                                </optgroup>
+                                <optgroup label="Casamentos e Bodas">
+                                    <option value="Casamento">Casamento</option>
+                                    <option value="Bodas de Ouro/Prata">Bodas</option>
                                 </optgroup>
                                 <optgroup label="Corporativos">
                                     <option value="Aniversário da Empresa">Aniversário da Empresa</option>
@@ -308,10 +315,11 @@ Meus Contatos:
                                     <option value="EBO">EBO (Escola Bíblica de Obreiros)</option>
                                     <option value="EBD">EBD (Escola Bíblica Dominical)</option>
                                 </optgroup>
-                                <optgroup label="Chás">
+                                <optgroup label="Outros">
                                     <option value="Chá de Bebê">Chá de Bebê</option>
                                     <option value="Chá de Cozinha">Chá de Cozinha</option>
                                     <option value="Chá Revelação">Chá Revelação</option>
+                                    <option value="Outro">Outro / Personalizado</option>
                                 </optgroup>
                                 <option value="Aluguel de Peças" style={{ fontWeight: 'bold' }}>Aluguel de Peças</option>
                             </select>
@@ -321,6 +329,20 @@ Meus Contatos:
                             <label style={labelStyle}><Calendar size={16} /> Data Pretendida</label>
                             <input type="date" required style={inputStyle} value={formData.dataEvento} onChange={(e) => setFormData({ ...formData, dataEvento: e.target.value })} />
                         </div>
+
+                        {formData.tipoEvento === 'Outro' && (
+                            <div className="input-group" style={{ gridColumn: '1 / -1' }}>
+                                <label style={labelStyle}><Send size={16} /> Especifique o seu Tipo de Evento / Proposta</label>
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="Ex: Noivado, Festa de Formatura, Inauguração..."
+                                    style={inputStyle}
+                                    value={formData.customTipoEvento}
+                                    onChange={(e) => setFormData({ ...formData, customTipoEvento: e.target.value })}
+                                />
+                            </div>
+                        )}
 
                         {formData.tipoEvento !== 'Aluguel de Peças' ? (
                             <>
