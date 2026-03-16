@@ -49,7 +49,7 @@ export const serviceList: ServiceCategory[] = [
         desc: "Celebrações delicadas: Bebê, Cozinha e Revelação.",
         longDesc: "Momentos de expectativa merecem doçura. Nossos projetos de chá são conhecidos pela paleta de cores harmoniosa e detalhes minuciosos que aquecem o coração dos convidados.",
         type: "Chá de Bebê",
-        image: "/assets/images/chas_decor.png",
+        image: "/assets/images/chas_final.png",
         highlights: ["Painéis orgânicos", "Identidade visual exclusiva", "Doces decorados", "Cenários de fotos"],
         subcategories: [
             { name: "Chá de Bebê", icon: <Baby size={18} /> },
