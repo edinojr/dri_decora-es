@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Send, CheckCircle2, Star, MapPin, Users as UsersIcon, Calendar } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Send, CheckCircle2, Star } from 'lucide-react';
 import { serviceList } from '../data/servicesData';
 
 const PortfolioGallery: React.FC = () => {
