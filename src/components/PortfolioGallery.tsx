@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PortfolioGallery: React.FC = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [infantilIndex, setInfantilIndex] = React.useState(0);
 
     const highlights = [
         { url: "/assets/images/casamento_decor.png", title: "Casamento Clássico" },
@@ -19,6 +20,14 @@ const PortfolioGallery: React.FC = () => {
         { url: "/assets/images/princesas_safari.jpg", title: "Princesas & Safari" },
         { url: "/assets/images/circo_pool_party.jpg", title: "Circo & Pool Party" },
     ];
+
+    const nextInfantil = () => {
+        setInfantilIndex((prev) => (prev + 1) % infantilGallery.length);
+    };
+
+    const prevInfantil = () => {
+        setInfantilIndex((prev) => (prev - 1 + infantilGallery.length) % infantilGallery.length);
+    };
 
     // Auto-scroll logic for Highlights
     useEffect(() => {
@@ -97,8 +106,20 @@ const PortfolioGallery: React.FC = () => {
                             <p style={{ color: 'var(--text-light)' }}>Heróis, Princesas e a Magia Disney.</p>
                         </div>
                         <div style={{ display: 'flex', gap: '10px' }}>
-                            <button className="premium-button" style={{ padding: '10px', borderRadius: '50%' }}><ChevronLeft size={20} /></button>
-                            <button className="premium-button" style={{ padding: '10px', borderRadius: '50%' }}><ChevronRight size={20} /></button>
+                            <button
+                                onClick={prevInfantil}
+                                className="premium-button"
+                                style={{ padding: '10px', borderRadius: '50%' }}
+                            >
+                                <ChevronLeft size={20} />
+                            </button>
+                            <button
+                                onClick={nextInfantil}
+                                className="premium-button"
+                                style={{ padding: '10px', borderRadius: '50%' }}
+                            >
+                                <ChevronRight size={20} />
+                            </button>
                         </div>
                     </div>
 
@@ -107,16 +128,18 @@ const PortfolioGallery: React.FC = () => {
                         gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
                         gap: '30px'
                     }}>
-                        {infantilGallery.map((item, index) => (
+                        <AnimatePresence mode="wait">
                             <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.2 }}
+                                key={infantilIndex}
+                                initial={{ opacity: 0, x: 50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -50 }}
+                                transition={{ duration: 0.5 }}
                                 className="glass"
                                 style={{
                                     padding: '10px',
-                                    position: 'relative'
+                                    position: 'relative',
+                                    gridColumn: '1 / -1' // Make it take full width for the carousel effect if needed, or adjust grid
                                 }}
                             >
                                 <div style={{
@@ -124,14 +147,18 @@ const PortfolioGallery: React.FC = () => {
                                     overflow: 'hidden',
                                     aspectRatio: '16/9'
                                 }}>
-                                    <img src={item.url} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    <img
+                                        src={infantilGallery[infantilIndex].url}
+                                        alt={infantilGallery[infantilIndex].title}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    />
                                 </div>
                                 <div style={{ padding: '15px' }}>
-                                    <h4 style={{ color: 'var(--secondary)', marginBottom: '5px' }}>{item.title}</h4>
+                                    <h4 style={{ color: 'var(--secondary)', marginBottom: '5px' }}>{infantilGallery[infantilIndex].title}</h4>
                                     <span style={{ color: 'var(--primary)', fontSize: '0.9rem', fontWeight: 'bold' }}>Tema Exclusivo</span>
                                 </div>
                             </motion.div>
-                        ))}
+                        </AnimatePresence>
                     </div>
                 </div>
             </div>
