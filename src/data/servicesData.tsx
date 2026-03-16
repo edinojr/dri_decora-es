@@ -77,7 +77,7 @@ export const serviceList: ServiceCategory[] = [
         desc: "O sonho dos 15 anos transformado em um Jardim Encantado de luxo.",
         longDesc: "A celebração dos 15 anos é um marco. Criamos um 'Jardim Encantado' deslumbrante, onde cada detalhe brilha. Imagine uma debutante com um vestido cravejado de cristais em tons de dourado e rose gold, cercada por borboletas de LED de diversos tamanhos que flutuam pelo ambiente. O cenário conta com um bolo cenográfico majestoso, um painel de fundo que transporta todos para um mundo encantado (sem escritas) e um trono de princesa digno da realeza. Para completar, o número 15 em madeira, perfeitamente harmonizado com a paleta de cores, destaca a importância desta data.",
         type: "Debutante (15 Anos)",
-        image: "/assets/images/debutante_decor.jpg", // Placeholder until image is provided/available
+        image: "/assets/images/infantil_decor.png", // Temporário: infantil_decor.png (antiga era debutante_decor.jpg que falhou no envio)
         highlights: ["Vestido Dourado e Rose Gold", "Borboletas de LED", "Trono de Princesa", "Painel Mundo Encantado"],
         subcategories: [
             { name: "Jardim Encantado", icon: <Sparkles size={18} /> },
