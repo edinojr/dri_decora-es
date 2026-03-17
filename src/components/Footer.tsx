@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                             fontSize: '0.8rem'
                         }}
                     >
-                        <Phone size={14} /> Desenvolvido por [Suporte Técnico]
+                        <Phone size={14} /> Desenvolvido por Edino_Junior
                     </a>
                 </div>
             </div>
