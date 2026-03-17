@@ -41,16 +41,20 @@ const FloatingSocialBar: React.FC = () => {
             <style>{`
                 @media (max-width: 768px) {
                     .floating-social-bar {
-                        right: 50% !important;
-                        top: auto !important;
-                        bottom: 20px !important;
-                        transform: translateX(50%) !important;
-                        flex-direction: row !important;
-                        gap: 15px !important;
+                        right: 8px !important;
+                        top: 50% !important;
+                        bottom: auto !important;
+                        transform: translateY(-50%) !important;
+                        flex-direction: column !important;
+                        gap: 10px !important;
                     }
                     .floating-social-link {
-                        width: 45px !important;
-                        height: 45px !important;
+                        width: 36px !important;
+                        height: 36px !important;
+                    }
+                    .floating-social-link svg {
+                        width: 18px !important;
+                        height: 18px !important;
                     }
                 }
             `}</style>
@@ -64,17 +68,20 @@ const FloatingSocialBar: React.FC = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="glass floating-social-link"
+                    className="floating-social-link"
                     style={{
-                        width: '50px',
-                        height: '50px',
+                        width: '45px',
+                        height: '45px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: 'var(--secondary)',
+                        color: 'white',
+                        backgroundColor: social.color,
                         textDecoration: 'none',
-                        border: '1px solid rgba(197, 179, 88, 0.3)', // Subtle gold border
-                        boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
+                        borderRadius: '50%',
+                        boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+                        border: 'none',
+                        marginBottom: '2px'
                     }}
                     title={social.label}
                 >
