@@ -31,8 +31,27 @@ const Hero: React.FC = () => {
 
   return (
     <section className="hero-section" style={{ padding: '0', overflow: 'hidden', backgroundColor: 'var(--secondary)' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-container-height {
+            height: 60vh !important;
+          }
+          .hero-title {
+            font-size: 2.2rem !important;
+            padding: 0 15px;
+          }
+          .hero-nav-btn {
+            padding: 10px !important;
+          }
+          .hero-nav-btn svg {
+            width: 20px !important;
+            height: 20px !important;
+          }
+        }
+      `}</style>
+      
       {/* Carousel Container */}
-      <div style={{ position: 'relative', height: '75vh', width: '100%' }}>
+      <div className="hero-container-height" style={{ position: 'relative', height: '75vh', width: '100%', transition: 'height 0.3s' }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -56,6 +75,7 @@ const Hero: React.FC = () => {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
+                className="hero-title"
                 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', marginBottom: '20px', lineHeight: '1.2', textShadow: '0 2px 15px rgba(0,0,0,0.4)' }}
               >
                 {slides[currentIndex].title1} <br />
@@ -66,7 +86,7 @@ const Hero: React.FC = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '30px', flexWrap: 'wrap' }}
+                style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '30px', flexWrap: 'wrap', padding: '0 20px' }}
               >
                 <a href="#leads" className="premium-button">Solicitar Orçamento</a>
                 <a href="#servicos" className="premium-button secondary" style={{ color: 'white', borderColor: 'white' }}>Ver Serviços</a>
@@ -80,14 +100,16 @@ const Hero: React.FC = () => {
           <>
             <button 
               onClick={prevSlide} 
-              style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', padding: '15px', color: 'white', cursor: 'pointer', zIndex: 10, backdropFilter: 'blur(5px)' }}
+              className="hero-nav-btn"
+              style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', padding: '15px', color: 'white', cursor: 'pointer', zIndex: 10, backdropFilter: 'blur(5px)' }}
               aria-label="Slide anterior"
             >
               <ChevronLeft size={24} />
             </button>
             <button 
               onClick={nextSlide} 
-              style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', padding: '15px', color: 'white', cursor: 'pointer', zIndex: 10, backdropFilter: 'blur(5px)' }}
+              className="hero-nav-btn"
+              style={{ position: 'absolute', right: '15px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', padding: '15px', color: 'white', cursor: 'pointer', zIndex: 10, backdropFilter: 'blur(5px)' }}
               aria-label="Próximo slide"
             >
               <ChevronRight size={24} />
@@ -115,7 +137,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Intro Text */}
-      <div className="container" style={{ padding: '60px 0', textAlign: 'center' }}>
+      <div className="container" style={{ padding: '60px 20px', textAlign: 'center' }}>
         <motion.p 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

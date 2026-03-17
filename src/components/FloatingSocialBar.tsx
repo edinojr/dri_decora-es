@@ -25,16 +25,35 @@ const FloatingSocialBar: React.FC = () => {
     ];
 
     return (
-        <div style={{
-            position: 'fixed',
-            right: '20px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            zIndex: 1000,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '15px'
-        }}>
+        <div 
+            className="floating-social-bar"
+            style={{
+                position: 'fixed',
+                right: '15px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 1000,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px'
+            }}
+        >
+            <style>{`
+                @media (max-width: 768px) {
+                    .floating-social-bar {
+                        right: 10px !important;
+                        gap: 8px !important;
+                    }
+                    .floating-social-link {
+                        width: 40px !important;
+                        height: 40px !important;
+                    }
+                    .floating-social-link svg {
+                        width: 18px !important;
+                        height: 18px !important;
+                    }
+                }
+            `}</style>
             {socialLinks.map((social, index) => (
                 <motion.a
                     key={index}
@@ -44,8 +63,8 @@ const FloatingSocialBar: React.FC = () => {
                     whileHover={{ scale: 1.1, x: -5 }}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + index * 0.1 }}
-                    className="glass"
+                    transition={{ delay: index * 0.1 }}
+                    className="glass floating-social-link"
                     style={{
                         width: '50px',
                         height: '50px',
