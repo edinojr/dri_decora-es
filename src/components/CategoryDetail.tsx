@@ -91,7 +91,7 @@ const CategoryDetail: React.FC<CategoryDetailProps> = ({ isOpen, onClose, catego
                                         {category.title}
                                     </h2>
                                     <p style={{ fontSize: '1.1rem', opacity: 0.9 }}>
-                                        {category.title === "Aluguel" ? "Grande Acervo" : "Transformando sonhos em realidade inesquecível."}
+                                        {category.title === "Aluguel" ? "Aluguel de Acervo" : "Transformando sonhos em realidade inesquecível."}
                                     </p>
                                 </div>
                             </div>

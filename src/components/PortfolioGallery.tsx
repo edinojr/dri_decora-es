@@ -119,7 +119,7 @@ const PortfolioGallery: React.FC = () => {
                                 }}>
                                     <h3 style={{ fontSize: '2rem', marginBottom: '5px' }}>{service.title}</h3>
                                     <p style={{ opacity: 0.9 }}>
-                                        {service.title === "Aluguel" ? "Grande Acervo" : "Transformando sonhos em realidade inesquecível."}
+                                        {service.title === "Aluguel" ? "Aluguel de Acervo" : "Transformando sonhos em realidade inesquecível."}
                                     </p>
                                 </div>
                                 <style>{`
