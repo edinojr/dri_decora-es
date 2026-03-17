@@ -5,45 +5,55 @@ import banner from '../assets/banner.jpg';
 const Hero: React.FC = () => {
   return (
     <section className="hero-section" style={{ padding: '0', overflow: 'hidden', backgroundColor: 'var(--accent)' }}>
-      {/* Banner Container */}
-      <div 
-        style={{ 
-          position: 'relative', 
-          width: '100%', 
-          height: '70vh', // Default for desktop
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url(${banner})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-          paddingBottom: '60px'
-        }}
-        className="responsive-banner"
-      >
-        <style>{`
-          @media (max-width: 768px) {
-            .responsive-banner {
-              height: 60vh !important;
-              background-position: top center !important;
-              padding-bottom: 40px !important;
-            }
-            .hero-buttons {
-              flex-direction: column !important;
-              align-items: center !important;
-              width: 90% !important;
-              gap: 12px !important;
-            }
-            .hero-buttons .premium-button {
-              width: 100% !important;
-              max-width: 300px !important;
-              padding: 12px 20px !important;
-              font-size: 0.95rem !important;
-            }
-          }
-        `}</style>
+      <style>{`
+        .hero-container {
+          position: relative;
+          width: 100%;
+          height: 70vh;
+          background-image: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.1)), url(${banner});
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          padding-bottom: 40px;
+          transition: height 0.3s ease;
+        }
 
-        {/* Action Buttons */}
+        @media (max-width: 768px) {
+          .hero-container {
+            height: auto !important;
+            aspect-ratio: 1536 / 1024 !important;
+            background-size: contain !important;
+            background-repeat: no-repeat !important;
+            background-position: top center !important;
+            padding-bottom: 10px !important; /* Espaço mínimo dentro da imagem */
+          }
+          .hero-buttons-wrapper {
+            padding: 15px 0 30px !important;
+            background: var(--accent);
+          }
+          .hero-buttons {
+            flex-direction: column !important;
+            gap: 10px !important;
+            width: 85% !important;
+            margin: 0 auto;
+          }
+          .hero-buttons .premium-button {
+            padding: 10px 15px !important;
+            font-size: 0.8rem !important;
+            width: 100% !important;
+            max-width: 280px !important;
+            text-align: center;
+          }
+        }
+      `}</style>
+
+      <div className="hero-container">
+        {/* Banner area - Image container holds the visual identity */}
+      </div>
+
+      <div className="hero-buttons-wrapper" style={{ display: 'flex', justifyContent: 'center', width: '100%', zIndex: 10 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,12 +63,11 @@ const Hero: React.FC = () => {
             display: 'flex', 
             gap: '20px', 
             flexWrap: 'wrap', 
-            justifyContent: 'center',
-            zIndex: 10 
+            justifyContent: 'center'
           }}
         >
           <a href="#leads" className="premium-button">Solicitar Orçamento</a>
-          <a href="#servicos" className="premium-button secondary" style={{ backgroundColor: 'rgba(255,255,255,0.82)', border: 'none' }}>Ver Serviços</a>
+          <a href="#servicos" className="premium-button secondary" style={{ backgroundColor: 'rgba(255,255,255,0.82)', border: '1px solid var(--primary)' }}>Ver Serviços</a>
         </motion.div>
       </div>
     </section>
