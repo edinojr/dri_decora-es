@@ -41,16 +41,16 @@ const FloatingSocialBar: React.FC = () => {
             <style>{`
                 @media (max-width: 768px) {
                     .floating-social-bar {
-                        right: 10px !important;
-                        gap: 8px !important;
+                        right: 50% !important;
+                        top: auto !important;
+                        bottom: 20px !important;
+                        transform: translateX(50%) !important;
+                        flex-direction: row !important;
+                        gap: 15px !important;
                     }
                     .floating-social-link {
-                        width: 40px !important;
-                        height: 40px !important;
-                    }
-                    .floating-social-link svg {
-                        width: 18px !important;
-                        height: 18px !important;
+                        width: 45px !important;
+                        height: 45px !important;
                     }
                 }
             `}</style>

@@ -161,14 +161,33 @@ Meus Contatos:
     return (
         <section id="leads" className="lead-form-section" style={{ backgroundColor: 'var(--accent)' }}>
             <div className="container">
-                <div className="glass" style={{ padding: '40px', maxWidth: '1000px', margin: '0 auto', boxShadow: 'var(--shadow)' }}>
+                <style>{`
+                    @media (max-width: 768px) {
+                        .lead-form-glass {
+                            padding: 25px 15px !important;
+                            border-radius: 16px !important;
+                            margin: 0 10px !important;
+                        }
+                        .responsive-grid-form {
+                            grid-template-columns: 1fr !important;
+                            gap: 15px !important;
+                        }
+                        .span-mobile-full {
+                            grid-column: 1 / -1 !important;
+                        }
+                        .lead-form-section .section-title h2 {
+                            font-size: 1.8rem !important;
+                        }
+                    }
+                `}</style>
+                <div className="glass lead-form-glass" style={{ padding: '40px', maxWidth: '1000px', margin: '0 auto', boxShadow: 'var(--shadow)' }}>
                     <div className="section-title">
                         <Heart size={32} color="var(--primary)" style={{ marginBottom: '10px' }} />
                         <h2>Vamos Criar Algo Mágico?</h2>
                         <p>Preencha os dados abaixo e entraremos em contato para planejar cada detalhe.</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+                    <form onSubmit={handleSubmit} className="responsive-grid-form" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
                         {/* Seção 1: Identificação */}
                         <div style={{ gridColumn: '1 / -1' }}><h3 style={sectionTitleStyle}>1. Identificação</h3></div>
 
@@ -215,7 +234,7 @@ Meus Contatos:
                             />
                         </div>
 
-                        <div className="input-group" style={{ gridColumn: 'span 2' }}>
+                        <div className="input-group span-mobile-full" style={{ gridColumn: 'span 2' }}>
                             <label style={labelStyle}>Rua/Logradouro</label>
                             <input type="text" required style={inputStyle} value={formData.residenciaRua} onChange={(e) => setFormData({ ...formData, residenciaRua: e.target.value })} />
                         </div>
@@ -257,7 +276,7 @@ Meus Contatos:
                             {loadingCep && <span style={{ fontSize: '0.8rem', color: 'var(--primary)' }}>Buscando...</span>}
                         </div>
 
-                        <div className="input-group" style={{ gridColumn: 'span 2' }}>
+                        <div className="input-group span-mobile-full" style={{ gridColumn: 'span 2' }}>
                             <label style={labelStyle}>Rua/Logradouro</label>
                             <input type="text" required style={inputStyle} value={formData.rua} onChange={(e) => setFormData({ ...formData, rua: e.target.value })} />
                         </div>
@@ -410,8 +429,8 @@ Meus Contatos:
                         </div>
                     </form>
                 </div>
-            </div >
-        </section >
+            </div>
+        </section>
     );
 };
 

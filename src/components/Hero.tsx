@@ -24,22 +24,21 @@ const Hero: React.FC = () => {
         <style>{`
           @media (max-width: 768px) {
             .responsive-banner {
-              height: auto !important;
-              aspect-ratio: 16 / 9 !important; /* Mantém a proporção da imagem para evitar cortes */
-              background-size: cover !important;
-              padding-bottom: 20px !important;
+              height: 60vh !important;
+              background-position: top center !important;
+              padding-bottom: 40px !important;
             }
             .hero-buttons {
-              gap: 10px !important;
-              width: 100%;
-              padding: 0 10px;
+              flex-direction: column !important;
+              align-items: center !important;
+              width: 90% !important;
+              gap: 12px !important;
             }
             .hero-buttons .premium-button {
-              padding: 8px 16px !important;
-              font-size: 0.8rem !important;
-              flex: 1;
-              text-align: center;
-              min-width: 140px;
+              width: 100% !important;
+              max-width: 300px !important;
+              padding: 12px 20px !important;
+              font-size: 0.95rem !important;
             }
           }
         `}</style>

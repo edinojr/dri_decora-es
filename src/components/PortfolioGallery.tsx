@@ -41,7 +41,6 @@ const PortfolioGallery: React.FC = () => {
                 <div className="section-title">
                     <h2 style={{ fontSize: '3rem', marginTop: '10px' }}>Galeria de Sonhos</h2>
                     <p style={{ maxWidth: '700px', margin: '20px auto' }}>Explore um universo de possibilidades e inspire-se para o seu próximo grande evento.</p>
-                    <span style={{ color: 'var(--primary)', fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>* As imagens são meramente ilustrativas</span>
                 </div>
 
                 {/* Insights e Inspirações (Auto-scroll Highlights) - MOVED ABOVE */}
