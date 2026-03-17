@@ -70,8 +70,13 @@ const PortfolioGallery: React.FC = () => {
                             padding: '0'
                         }}>
                             {/* Image Part */}
-                            <div style={{ position: 'relative', minHeight: '400px' }}>
-                                <img src={service.image} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <div className="gallery-image-container" style={{ position: 'relative', minHeight: '400px', overflow: 'hidden' }}>
+                                <img 
+                                    src={service.image} 
+                                    alt={service.title} 
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                                    className="gallery-img"
+                                />
                                 <div style={{
                                     position: 'absolute',
                                     bottom: 0,
@@ -84,6 +89,17 @@ const PortfolioGallery: React.FC = () => {
                                     <h3 style={{ fontSize: '2rem', marginBottom: '5px' }}>{service.title}</h3>
                                     <p style={{ opacity: 0.9 }}>Transformando sonhos em realidade inesquecível.</p>
                                 </div>
+                                <style>{`
+                                    @media (max-width: 768px) {
+                                        .gallery-image-container {
+                                            min-height: 250px !important;
+                                        }
+                                        .gallery-img {
+                                            object-fit: contain !important;
+                                            background-color: #f8f8f8;
+                                        }
+                                    }
+                                `}</style>
                             </div>
 
                             {/* Text Part */}

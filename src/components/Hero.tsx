@@ -1,139 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
 import banner from '../assets/banner.jpg';
+import logo from '../assets/logo.jpg';
 
 const Hero: React.FC = () => {
-  const slides = [
-    { 
-      url: banner, 
-      title1: "Transformando Sonhos em", 
-      title2: "Cenários Inesquecíveis" 
-    },
-    { 
-      url: "/assets/images/slide1.png", 
-      title1: "Sofisticação e Arte", 
-      title2: "Para Sua Celebração" 
-    }
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
-
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
-
   return (
-    <section className="hero-section" style={{ padding: '0', overflow: 'hidden', backgroundColor: 'var(--secondary)' }}>
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-container-height {
-            height: 60vh !important;
+    <section className="hero-section" style={{ padding: '0', overflow: 'hidden', backgroundColor: 'var(--accent)' }}>
+      {/* Banner Container */}
+      <div 
+        style={{ 
+          position: 'relative', 
+          width: '100%', 
+          height: '70vh', // Default for desktop
+          backgroundImage: `url(${banner})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        className="responsive-banner"
+      >
+        <style>{`
+          @media (max-width: 768px) {
+            .responsive-banner {
+              height: 45vh !important;
+              background-position: top center !important;
+            }
+            .hero-logo {
+              max-width: 150px !important;
+            }
           }
-          .hero-title {
-            font-size: 2.2rem !important;
-            padding: 0 15px;
-          }
-          .hero-nav-btn {
-            padding: 10px !important;
-          }
-          .hero-nav-btn svg {
-            width: 20px !important;
-            height: 20px !important;
-          }
-        }
-      `}</style>
-      
-      {/* Carousel Container */}
-      <div className="hero-container-height" style={{ position: 'relative', height: '75vh', width: '100%', transition: 'height 0.3s' }}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url(${slides[currentIndex].url})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <div className="container" style={{ textAlign: 'center', color: 'white' }}>
-              <motion.h1 
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="hero-title"
-                style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', marginBottom: '20px', lineHeight: '1.2', textShadow: '0 2px 15px rgba(0,0,0,0.4)' }}
-              >
-                {slides[currentIndex].title1} <br />
-                <span style={{ color: 'var(--primary)' }}>{slides[currentIndex].title2}</span>
-              </motion.h1>
-              
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '30px', flexWrap: 'wrap', padding: '0 20px' }}
-              >
-                <a href="#leads" className="premium-button">Solicitar Orçamento</a>
-                <a href="#servicos" className="premium-button secondary" style={{ color: 'white', borderColor: 'white' }}>Ver Serviços</a>
-              </motion.div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        `}</style>
 
-        {/* Navigation Arrows */}
-        {slides.length > 1 && (
-          <>
-            <button 
-              onClick={prevSlide} 
-              className="hero-nav-btn"
-              style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', padding: '15px', color: 'white', cursor: 'pointer', zIndex: 10, backdropFilter: 'blur(5px)' }}
-              aria-label="Slide anterior"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button 
-              onClick={nextSlide} 
-              className="hero-nav-btn"
-              style={{ position: 'absolute', right: '15px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', padding: '15px', color: 'white', cursor: 'pointer', zIndex: 10, backdropFilter: 'blur(5px)' }}
-              aria-label="Próximo slide"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </>
-        )}
-
-        {/* Dots */}
-        <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '10px', zIndex: 10 }}>
-          {slides.map((_, i) => (
-            <div 
-              key={i} 
-              onClick={() => setCurrentIndex(i)}
-              style={{ 
-                width: '10px', 
-                height: '10px', 
-                borderRadius: '50%', 
-                backgroundColor: i === currentIndex ? 'var(--primary)' : 'rgba(255,255,255,0.3)',
-                cursor: 'pointer',
-                transition: 'all 0.3s'
-              }} 
-            />
-          ))}
-        </div>
+        {/* Logo Overlay */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          style={{
+            zIndex: 10,
+            padding: '20px',
+            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+            borderRadius: '50%',
+            boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
+            backdropFilter: 'blur(5px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <img 
+            src={logo} 
+            alt="Dri Decorações Logo" 
+            className="hero-logo"
+            style={{ 
+              maxWidth: '220px', 
+              height: 'auto',
+              borderRadius: '50%'
+            }} 
+          />
+        </motion.div>
       </div>
 
       {/* Intro Text */}
@@ -142,7 +69,13 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          style={{ fontSize: '1.2rem', color: 'var(--text-light)', maxWidth: '800px', margin: '0 auto' }}
+          style={{ 
+            fontSize: '1.2rem', 
+            color: 'var(--text-light)', 
+            maxWidth: '800px', 
+            margin: '0 auto',
+            lineHeight: '1.6'
+          }}
         >
           Designer e Arte para celebrar cada detalhe da sua história. Especialistas em eventos personalizados,
           temáticos, corporativos e cristãos.
