@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import banner from '../assets/banner.jpg';
-import logo from '../assets/logo.jpg';
 
 const Hero: React.FC = () => {
   return (
@@ -12,64 +11,65 @@ const Hero: React.FC = () => {
           position: 'relative', 
           width: '100%', 
           height: '70vh', // Default for desktop
-          backgroundImage: `url(${banner})`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url(${banner})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'flex-end',
           justifyContent: 'center',
+          paddingBottom: '50px'
         }}
         className="responsive-banner"
       >
         <style>{`
           @media (max-width: 768px) {
             .responsive-banner {
-              height: 45vh !important;
-              background-position: top center !important;
+              height: 50vh !important;
+              background-position: center center !important;
+              padding-bottom: 30px !important;
             }
-            .hero-logo {
-              max-width: 150px !important;
+            .hero-buttons {
+              gap: 10px !important;
+            }
+            .hero-buttons .premium-button {
+              padding: 10px 20px !important;
+              font-size: 0.9rem !important;
             }
           }
         `}</style>
 
-        {/* Logo Overlay */}
+        {/* Action Buttons */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          style={{
-            zIndex: 10,
-            padding: '20px',
-            backgroundColor: 'rgba(255, 255, 255, 0.7)',
-            borderRadius: '50%',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
-            backdropFilter: 'blur(5px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="hero-buttons"
+          style={{ 
+            display: 'flex', 
+            gap: '20px', 
+            flexWrap: 'wrap', 
+            justifyContent: 'center',
+            zIndex: 10 
           }}
         >
-          <img 
-            src={logo} 
-            alt="Dri Decorações Logo" 
-            className="hero-logo"
-            style={{ 
-              maxWidth: '220px', 
-              height: 'auto',
-              borderRadius: '50%'
-            }} 
-          />
+          <a href="#leads" className="premium-button">Solicitar Orçamento</a>
+          <a href="#servicos" className="premium-button secondary" style={{ backgroundColor: 'rgba(255,255,255,0.8)', border: 'none' }}>Ver Serviços</a>
         </motion.div>
       </div>
 
       {/* Intro Text */}
       <div className="container" style={{ padding: '60px 20px', textAlign: 'center' }}>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ 
+          transition={{ duration: 0.8 }}
+        >
+          <h1 style={{ fontSize: '2.5rem', marginBottom: '20px', color: 'var(--secondary)', lineHeight: '1.2' }}>
+            Dri Decorações <br />
+            <span style={{ color: 'var(--primary)', fontSize: '1.8rem' }}>Designer e Arte para sua Festa</span>
+          </h1>
+          <p style={{ 
             fontSize: '1.2rem', 
             color: 'var(--text-light)', 
             maxWidth: '800px', 
@@ -77,9 +77,10 @@ const Hero: React.FC = () => {
             lineHeight: '1.6'
           }}
         >
-          Designer e Arte para celebrar cada detalhe da sua história. Especialistas em eventos personalizados,
-          temáticos, corporativos e cristãos.
-        </motion.p>
+          Especialistas em eventos personalizados, temáticos, corporativos e cristãos. 
+          Transformando cada detalhe em uma memória inesquecível.
+        </p>
+        </motion.div>
       </div>
     </section>
   );
