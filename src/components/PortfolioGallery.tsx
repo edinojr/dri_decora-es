@@ -118,7 +118,9 @@ const PortfolioGallery: React.FC = () => {
                                     color: 'white'
                                 }}>
                                     <h3 style={{ fontSize: '2rem', marginBottom: '5px' }}>{service.title}</h3>
-                                    <p style={{ opacity: 0.9 }}>Transformando sonhos em realidade inesquecível.</p>
+                                    <p style={{ opacity: 0.9 }}>
+                                        {service.title === "Aluguel" ? "Grande Acervo" : "Transformando sonhos em realidade inesquecível."}
+                                    </p>
                                 </div>
                                 <style>{`
                                     @media (max-width: 768px) {

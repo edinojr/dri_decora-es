@@ -48,9 +48,28 @@ const Footer: React.FC = () => {
                     paddingTop: '20px',
                     textAlign: 'center',
                     fontSize: '0.9rem',
-                    opacity: 0.6
+                    opacity: 0.6,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                    alignItems: 'center'
                 }}>
-                    &copy; {new Date().getFullYear()} Dri Decorações. Todos os direitos reservados.
+                    <div>&copy; {new Date().getFullYear()} Dri Decorações. Todos os direitos reservados.</div>
+                    <a 
+                        href="https://wa.me/5511939014534" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ 
+                            color: 'var(--primary)', 
+                            textDecoration: 'none', 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: '5px',
+                            fontSize: '0.8rem'
+                        }}
+                    >
+                        <Phone size={14} /> Desenvolvido por [Suporte Técnico]
+                    </a>
                 </div>
             </div>
         </footer>

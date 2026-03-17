@@ -30,21 +30,24 @@ const Hero: React.FC = () => {
             padding-bottom: 10px !important; /* Espaço mínimo dentro da imagem */
           }
           .hero-buttons-wrapper {
-            padding: 15px 0 30px !important;
+            padding: 10px 0 20px !important;
             background: var(--accent);
           }
           .hero-buttons {
-            flex-direction: column !important;
-            gap: 10px !important;
-            width: 85% !important;
+            flex-direction: row !important;
+            gap: 8px !important;
+            width: 95% !important;
             margin: 0 auto;
+            justify-content: center !important;
           }
           .hero-buttons .premium-button {
-            padding: 10px 15px !important;
-            font-size: 0.8rem !important;
-            width: 100% !important;
-            max-width: 280px !important;
+            padding: 8px 12px !important;
+            font-size: 0.7rem !important;
+            width: auto !important;
+            flex: 1 !important;
+            max-width: 160px !important;
             text-align: center;
+            white-space: nowrap;
           }
         }
       `}</style>
