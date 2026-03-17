@@ -39,13 +39,57 @@ const PortfolioGallery: React.FC = () => {
         <section id="portfolio" style={{ backgroundColor: 'var(--accent)', overflow: 'hidden', padding: '100px 0' }}>
             <div className="container">
                 <div className="section-title">
-                    <span style={{ color: 'var(--primary)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px' }}>Nossas Criações</span>
                     <h2 style={{ fontSize: '3rem', marginTop: '10px' }}>Galeria de Sonhos</h2>
                     <p style={{ maxWidth: '700px', margin: '20px auto' }}>Explore um universo de possibilidades e inspire-se para o seu próximo grande evento.</p>
+                    <span style={{ color: 'var(--primary)', fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>* As imagens são meramente ilustrativas</span>
+                </div>
+
+                {/* Insights e Inspirações (Auto-scroll Highlights) - MOVED ABOVE */}
+                <div style={{ position: 'relative', marginTop: '40px', marginBottom: '80px' }}>
+                    <h3 style={{ textAlign: 'center', marginBottom: '30px', color: 'var(--secondary)' }}>Insights e Inspirações</h3>
+                    <div
+                        ref={scrollRef}
+                        style={{
+                            display: 'flex',
+                            gap: '20px',
+                            overflowX: 'hidden',
+                            whiteSpace: 'nowrap',
+                            padding: '20px 0'
+                        }}
+                    >
+                        {[...highlights, ...highlights].map((item, index) => (
+                            <motion.div
+                                key={index}
+                                whileHover={{ scale: 1.05 }}
+                                style={{
+                                    minWidth: '250px',
+                                    height: '350px',
+                                    borderRadius: '20px',
+                                    overflow: 'hidden',
+                                    position: 'relative',
+                                    boxShadow: 'var(--shadow)',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                <img src={item.url} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    padding: '20px',
+                                    background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
+                                    color: 'white'
+                                }}>
+                                    <h4 style={{ margin: 0, fontSize: '1rem' }}>{item.title}</h4>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Detailed Sections for each Category */}
-                <div style={{ marginTop: '80px', display: 'flex', flexDirection: 'column', gap: '80px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '80px' }}>
                     {serviceList.map((service, index) => (
                         <div key={index} id={`details-${service.title.toLowerCase()}`} style={{ 
                             display: 'grid', 
@@ -140,50 +184,6 @@ const PortfolioGallery: React.FC = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-
-                {/* Insights e Inspirações (Auto-scroll Highlights) */}
-                <div style={{ position: 'relative', marginTop: '100px' }}>
-                    <h3 style={{ textAlign: 'center', marginBottom: '30px', color: 'var(--secondary)' }}>Insights e Inspirações</h3>
-                    <div
-                        ref={scrollRef}
-                        style={{
-                            display: 'flex',
-                            gap: '20px',
-                            overflowX: 'hidden',
-                            whiteSpace: 'nowrap',
-                            padding: '20px 0'
-                        }}
-                    >
-                        {[...highlights, ...highlights].map((item, index) => (
-                            <motion.div
-                                key={index}
-                                whileHover={{ scale: 1.05 }}
-                                style={{
-                                    minWidth: '250px',
-                                    height: '350px',
-                                    borderRadius: '20px',
-                                    overflow: 'hidden',
-                                    position: 'relative',
-                                    boxShadow: 'var(--shadow)',
-                                    cursor: 'pointer'
-                                }}
-                            >
-                                <img src={item.url} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                <div style={{
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    padding: '20px',
-                                    background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
-                                    color: 'white'
-                                }}>
-                                    <h4 style={{ margin: 0, fontSize: '1rem' }}>{item.title}</h4>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
                 </div>
             </div>
         </section>
